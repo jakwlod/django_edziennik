@@ -1,0 +1,45 @@
+{%load static%}
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="{% url 'zatwierdzo' idp  %}" method="post">
+{% csrf_token %}
+{% for listaa in quest2 %}
+{% for osoba in quest3%}
+{%if osoba.id == listaa.id_u_id %}
+{{osoba.nazwisko}} {{osoba.imie}}
+
+<select name="new_ocena{{ forloop.counter }}" id="new_ocena{{ forloop.counter }}">
+    <option value="0">brak</option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+</select>
+<input type="hidden" name="idu{{ forloop.counter }}" id="idu{{ forloop.counter }}" value="{{osoba.id}}">
+
+{% endif %}
+    <input type="hidden" name="ile" id="ile" value="{{forloop.counter}}">
+{%endfor%}
+<br>
+
+
+{%endfor%}
+    <br>
+waga <input type="number" name="waga"> <br>
+  opis  <input type="text" name="opis">
+  <input type="submit" value="dodaj">
+</form>
+
+
+
+
+</body>
+</html>

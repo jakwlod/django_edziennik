@@ -1,0 +1,23 @@
+{%load static%}
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1> Witaj nauczycicelu  {{quest.imie}}  {{quest.nazwisko}}<h1> <br>
+<br>
+
+
+{% for plan in quest.plan_set.all %}
+<li>
+    {{plan.przedmiot}}
+<a href="{% url 'szczegoly' plan.id%}"> szczegoly </a>
+</li>
+
+{%endfor%}
+
+</body>
+</html>

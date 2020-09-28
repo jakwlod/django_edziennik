@@ -1,0 +1,35 @@
+{%load static%}
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+edytuj oceny ucznia: {{quest.imie}} {{quest.nazwisko}}
+
+<form action="{% url 'zatwierdze' idp  %}" method="post">
+{% csrf_token %}
+{% for ocena in quest2 %}
+    <input type="radio" name="wybor" id="wybor{{ ocena.id }}" value="{{ ocena.id }}">
+<a href="#" data-toggle="tootip" title="{{ocena.opis}}  waga: {{ocena.waga}} "> {{ocena.ocena}}</a>
+
+<br>
+{%endfor%}
+<select name="new_ocena" id="new_ocena">
+    <option value="0">usun</option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+</select>
+    <input type="submit" value="zatwierdz">
+</form>
+
+
+</body>
+</html>

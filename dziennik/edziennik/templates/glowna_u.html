@@ -1,0 +1,23 @@
+{%load static%}
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Witaj uczniu
+{{quest.imie}}  {{quest.nazwisko}}</h1> <br>
+
+{% for ocena in quest.ocena_set.all|dictsort:"przedmiot" %}
+{% ifchanged ocena.przedmiot %}<br>
+        <h2>{{ocena.przedmiot}} : </h2>
+ {%endifchanged%}
+
+<a href="#" data-toggle="tootip" title="{{ocena.opis}}  waga: {{ocena.waga}} "> {{ocena.ocena}}</a>
+{%endfor%}
+
+
+</body>
+</html>
